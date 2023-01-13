@@ -1,6 +1,6 @@
-local api = loadstring(game:HttpGet("https://pastebin.com/raw/jVQL1eJb"))()
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/bzZ9jbGX"))()
-local bssapi = loadstring(game:HttpGet("https://pastebin.com/raw/x8dqxVts"))()
+local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/api.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/library.lua"))()
+local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/bssapi.lua"))()
 
 if not isfolder("kometa") then makefolder("kometa") end
 if isfile('kometa.txt') == false then (syn and syn.request or http_request)({ Url = "http://127.0.0.1:6463/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://discord.com"},Body = game:GetService("HttpService"):JSONEncode({cmd = "INVITE_BROWSER",args = {code = "2a5gVpcpzv"},nonce = game:GetService("HttpService"):GenerateGUID(false)}),writefile('kometa.txt', "discord")})end
@@ -1483,9 +1483,9 @@ extras:Cheat("Slider", "Walk Speed Value", function(Value) kometa.vars.walkspeed
 extras:Cheat("Slider", "Jump Power Value", function(Value) kometa.vars.jumppower = Value end, {min = 0, max = 120, suffix = " studs", default = 70})
 
 local optimize = extrtab:Sector("Optimization")
-optimize:Cheat("Button", "Hide nickname", function() loadstring(game:HttpGet("https://pastebin.com/raw/NJFCNcNB"))()end, {text = ''})
-optimize:Cheat("Button", "Boost FPS", function()loadstring(game:HttpGet("https://pastebin.com/raw/j9iYzpJ1"))()end, {text = ''})
-optimize:Cheat("Button", "Destroy Decals", function()loadstring(game:HttpGet("https://pastebin.com/raw/MP82e22i"))()end, {text = ''})
+optimize:Cheat("Button", "Hide nickname", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/nickspoof.lua"))()end, {text = ''})
+optimize:Cheat("Button", "Boost FPS", function()loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/fpsboost.lua"))()end, {text = ''})
+optimize:Cheat("Button", "Destroy Decals", function()loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/destroydecals.lua"))()end, {text = ''})
 optimize:Cheat("Checkbox", "Disable 3D Render On Unfocus", function(State) kometa.toggles.disablerender = State end)
 optimize:Cheat("Checkbox", "Disable 3D Render", function(State) game:GetService("RunService"):Set3dRenderingEnabled(not State) end)
 
