@@ -1,3 +1,7 @@
+repeat wait(0.1) until game:IsLoaded()
+
+hives = game.Workspace.Honeycombs:GetChildren() for i = #hives, 1, -1 do  v = game.Workspace.Honeycombs:GetChildren()[i] if v.Owner.Value == nil then game.ReplicatedStorage.Events.ClaimHive:FireServer(v.HiveID.Value) end end
+
 local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/api.lua"))()
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/library.lua"))()
 local bssapi = loadstring(game:HttpGet("https://raw.githubusercontent.com/kuutti53823/mr-nirgga/main/bssapi.lua"))()
@@ -2193,6 +2197,5 @@ for _, Part in next, workspace.Decorations.Misc:GetDescendants() do
 end
 
 setfflag("HumanoidParallelRemoveNoPhysics", "False")setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-hives = game.Workspace.Honeycombs:GetChildren() for i = #hives, 1, -1 do  v = game.Workspace.Honeycombs:GetChildren()[i] if v.Owner.Value == nil then game.ReplicatedStorage.Events.ClaimHive:FireServer(v.HiveID.Value) end end
 if _G.autoload then if isfile("kometa/BSS_".._G.autoload..".json") then kometa = game:service'HttpService':JSONDecode(readfile("kometa/BSS_".._G.autoload..".json")) end end
 game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.BeePopUp.MutationFrame.MutationLabel.Text = ""
