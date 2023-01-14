@@ -245,6 +245,7 @@ local kometa = {
     killerkometa = {},
     bltokens = {},
     toggles = {
+        farmduped = false,
         autofarm = false,
         farmclosestleaf = false,
         farmbubbles = false,
@@ -307,7 +308,6 @@ local kometa = {
         faceflames = false,
         convertminutestoggle = false,
         randomizespeed = false,
-        farmglitchedtokens = false,
         freerobopass = false,
         automasks = false,
         donotconvert = false,
@@ -1070,6 +1070,7 @@ function getflame()
     end
 end
 
+--[[
 function getglitchtoken()
     for i,v in pairs(game:GetService("Workspace").Camera.DupedTokens:GetChildren()) do
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
@@ -1083,6 +1084,27 @@ function getglitchtoken()
             until not v or not v.Parent
             api.humanoid().AutoRotate = true
             break
+        end
+    end
+end
+--]]
+
+function getdupe()
+    for i,v in next, game:GetService("Workspace").Camera.DupedTokens:GetChildren() do
+        if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < 25 then
+            if string.find(v.FrontDecal.Texture,"5877939956") or string.find(v.FrontDecal.Texture,"1629547638") then
+            v.CFrame = v.CFrame - Vector3.new(0,5,0)
+                local hash = tostring(math.random(1,10000))
+                v.Name = hash
+                repeat task.wait(.05)
+                    temptable.float = true
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                until game:GetService("Workspace").Camera.DupedTokens:FindFirstChild(hash) == nil
+                temptable.float = false
+                break
+            else
+                farm(v)
+            end
         end
     end
 end
@@ -1334,7 +1356,7 @@ farmsett:Cheat("Checkbox", "Farm Flames", function(State) kometa.toggles.farmfla
 farmsett:Cheat("Checkbox", "Farm Coconuts & Shower", function(State) kometa.toggles.farmcoco = State end)
 farmsett:Cheat("Checkbox", "Farm Precise Crosshairs", function(State) kometa.toggles.collectcrosshairs = State end)
 farmsett:Cheat("Checkbox", "Farm Fuzzy Bombs", function(State) kometa.toggles.farmfuzzy = State end)
-farmsett:Cheat("Checkbox", "Farm Duped Tokens", function(State) kometa.toggles.farmglitchedtokens = State end)
+farmsett:Cheat("Checkbox", "Farm Duped Tokens", function(State) kometa.toggles.farmduped = State end)
 farmsett:Cheat("Checkbox", "Farm Under Balloons", function(State) kometa.toggles.farmballoons = State end)
 farmsett:Cheat("Checkbox", "Farm Under Clouds", function(State) kometa.toggles.farmclouds = State end)
 farmsett:Cheat("Checkbox", "Face Flames", function(State) kometa.toggles.faceflames = State end)
@@ -1581,13 +1603,13 @@ Local_Configs:Cheat("Button", "Load Config", function() kometa = game:service'Ht
 Local_Configs:Cheat("Button", "Save Config", function() writefile("kometa/BSS_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometa)) writefile("kometa/BSS_webhook_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometawebhook)) end, {text = ' '})
 Local_Configs:Cheat("Button", "Reset Config", function() kometa = defaultkometa kometawebhook = defaultkometawebhook end, {text = ' '})
 
-task.spawn(function() while task.wait() do
+task.spawn(function() while task.wait(0.05) do
     if kometa.toggles.autofarm then
         --if kometa.toggles.farmcoco then getcoco() end
         --if kometa.toggles.collectcrosshairs then getcrosshairs() end
-        if kometa.toggles.farmflame then getflame() end
-        if kometa.toggles.farmglitchedtokens then getglitchtoken() end
         -- if kometa.toggles.farmfuzzy then getfuzzy() end
+        if kometa.toggles.farmflame then getflame() end
+        if kometa.toggles.farmduped then getdupe() end
     end
 end end)
 
