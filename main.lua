@@ -1098,7 +1098,7 @@ function getdupe()
                     temptable.float = true
                     api.walkTo(v.Position)
                     task.wait()
-                until game:GetService("Workspace").Camera.DupedTokens:FindFirstChild(hash) == nil
+                until not v or game:GetService("Workspace").Camera.DupedTokens:FindFirstChild(hash) == nil
                 temptable.float = false
                 break
             else
