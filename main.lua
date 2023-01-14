@@ -1029,7 +1029,7 @@ end
     repeat
         task.wait()
             temptable.float = true
-        api.tween(0.2, v.CFrame)
+        api.tween(0.1, v.CFrame)
     until not v.Parent
     if temptable.float then temptable.float = false end
     temptable.coconut = false
@@ -1095,7 +1095,7 @@ function getdupe()
                 v.Name = hash
                 repeat
                     temptable.float = true
-                    api.humanoid():MoveTo(v.Position)
+                    api.walkTo(v.Position)
                     task.wait()
                 until game:GetService("Workspace").Camera.DupedTokens:FindFirstChild(hash) == nil
                 temptable.float = false
