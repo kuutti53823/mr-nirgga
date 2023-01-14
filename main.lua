@@ -1093,9 +1093,10 @@ function getdupe()
             v.CFrame = v.CFrame - Vector3.new(0,5,0)
                 local hash = tostring(math.random(1,10000))
                 v.Name = hash
-                repeat task.wait(.05)
+                repeat
                     temptable.float = true
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                    api.humanoid():MoveTo(v.Position)
+                    task.wait()
                 until game:GetService("Workspace").Camera.DupedTokens:FindFirstChild(hash) == nil
                 temptable.float = false
                 break
