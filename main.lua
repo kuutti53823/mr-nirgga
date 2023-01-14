@@ -1023,34 +1023,18 @@ function getcloud()
     end
 end
 
---[[
     function getcoco(v)
     if temptable.coconut then repeat task.wait() until not temptable.coconut end
     temptable.coconut = true
-    -- api.tween(.1, v.CFrame)
-    -- repeat task.wait() api.walkTo(v.Position) until not v.Parent
-    -- task.wait(.1)
     repeat
         task.wait()
             temptable.float = true
-        api.tweenNoDelay(0.1, v.CFrame)
+        api.tween(0.5, v.CFrame)
     until not v.Parent
     if temptable.float then temptable.float = false end
     temptable.coconut = false
     table.remove(temptable.coconuts, table.find(temptable.coconuts, v))
 end
---]]
-
-function getcoco(v)
-    if temptable.coconut then repeat task.wait() until not temptable.coconut end
-    temptable.coconut = true
-    api.tween(.1, v.CFrame)
-    repeat task.wait() api.walkTo(v.Position) until not v.Parent
-    task.wait(.1)
-    temptable.coconut = false
-    table.remove(temptable.coconuts, table.find(temptable.coconuts, v))
-end
-
 
 function getfuzzy(v)
     if temptable.fuzzy then repeat task.wait() until not temptable.fuzzy end
