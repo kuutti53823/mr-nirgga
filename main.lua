@@ -1067,8 +1067,7 @@ function getflame()
     end
 end
 
---[[
-function getglitchtoken()
+function getdupe()
     for i,v in pairs(game:GetService("Workspace").Camera.DupedTokens:GetChildren()) do
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
             if kometa.toggles.faceballoons and findballoon() then api.humanoidrootpart().CFrame = CFrame.lookAt(api.humanoidrootpart().Position, Vector3.new(findballoon().BalloonRoot.Position.X, api.humanoidrootpart().Position.Y, findballoon().BalloonRoot.Position.Z)) end
@@ -1084,11 +1083,10 @@ function getglitchtoken()
         end
     end
 end
---]]
 
+--[[
 function getdupe()
     for i,v in next, game:GetService("Workspace").Camera.DupedTokens:GetChildren() do
-        if v:WaitForChild("FrontDecal") then
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < 25 then
             if string.find(v.FrontDecal.Texture,"5877939956") or string.find(v.FrontDecal.Texture,"1629547638") then
             v.CFrame = v.CFrame - Vector3.new(0,5,0)
@@ -1106,7 +1104,8 @@ function getdupe()
             end
         end
     end
-end end
+end
+--]]
 
 function avoidmob()
     for i,v in next, game:GetService("Workspace").Monsters:GetChildren() do
