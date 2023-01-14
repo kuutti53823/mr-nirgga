@@ -1023,7 +1023,8 @@ function getcloud()
     end
 end
 
-function getcoco(v)
+--[[
+    function getcoco(v)
     if temptable.coconut then repeat task.wait() until not temptable.coconut end
     temptable.coconut = true
     -- api.tween(.1, v.CFrame)
@@ -1038,6 +1039,18 @@ function getcoco(v)
     temptable.coconut = false
     table.remove(temptable.coconuts, table.find(temptable.coconuts, v))
 end
+--]]
+
+function getcoco(v)
+    if temptable.coconut then repeat task.wait() until not temptable.coconut end
+    temptable.coconut = true
+    api.tween(.1, v.CFrame)
+    repeat task.wait() api.walkTo(v.Position) until not v.Parent
+    task.wait(.1)
+    temptable.coconut = false
+    table.remove(temptable.coconuts, table.find(temptable.coconuts, v))
+end
+
 
 function getfuzzy(v)
     if temptable.fuzzy then repeat task.wait() until not temptable.fuzzy end
@@ -1092,7 +1105,7 @@ end
 function getdupe()
     for i,v in next, game:GetService("Workspace").Camera.DupedTokens:GetChildren() do
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < 25 then
-            if string.find(v.FrontDecal.Texture,"5877939956") or string.find(v.FrontDecal.Texture,"1629547638") then
+            if string.find(v:WaitForChild("FrontDecal").Texture,"5877939956") or string.find(v:WaitForChild("FrontDecal").Texture,"1629547638") then
             v.CFrame = v.CFrame - Vector3.new(0,5,0)
                 local hash = tostring(math.random(1,10000))
                 v.Name = hash
