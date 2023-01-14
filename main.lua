@@ -1088,9 +1088,9 @@ end
 
 function getdupe()
     for i,v in next, game:GetService("Workspace").Camera.DupedTokens:GetChildren() do
+        if v:FirstFirstChild("FrontDecal") then
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < 25 then
-            if string.find(v:FindFirstChild("FrontDecal").Texture,"5877939956") or string.find(v:FindFirstChild("FrontDecal").Texture,"1629547638") then
-                print("Front Decal Found")
+            if string.find(v.FrontDecal.Texture,"5877939956") or string.find(v.FrontDecal.Texture,"1629547638") then
             v.CFrame = v.CFrame - Vector3.new(0,5,0)
                 local hash = tostring(math.random(1,10000))
                 v.Name = hash
@@ -1106,7 +1106,7 @@ function getdupe()
             end
         end
     end
-end
+end end
 
 function avoidmob()
     for i,v in next, game:GetService("Workspace").Monsters:GetChildren() do
