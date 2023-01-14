@@ -2005,8 +2005,8 @@ end end)
 
 game:GetService('RunService').Heartbeat:connect(function() 
     if kometa.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
-    if kometa.toggles.loopspeed then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = kometa.vars.walkspeed end
-    if kometa.toggles.loopjump then game.Players.LocalPlayer.Character.Humanoid.JumpPower = kometa.vars.jumppower end
+    if kometa.toggles.loopspeed then game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = kometa.vars.walkspeed end
+    if kometa.toggles.loopjump then game.Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = kometa.vars.jumppower end
 end)
 
 game:GetService('RunService').Heartbeat:connect(function()
@@ -2084,7 +2084,7 @@ for _,v in next, game.Workspace.Collectibles:GetChildren() do
 end 
 
 task.spawn(function() while task.wait() do
-    pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    pos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
     task.wait(0.00001)
     currentSpeed = (pos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
     if currentSpeed > 0 then
