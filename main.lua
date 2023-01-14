@@ -1029,7 +1029,7 @@ end
     repeat
         task.wait()
             temptable.float = true
-        api.tween(0.5, v.CFrame)
+        api.tween(0.2, v.CFrame)
     until not v.Parent
     if temptable.float then temptable.float = false end
     temptable.coconut = false
