@@ -1666,18 +1666,18 @@ end end)
 local honeytoggleouyfyt = false
 task.spawn(function()
     while task.wait(1) do
-        if kometa.toggles.honeymaskconv == true then
-        if temptable.converting then
-            if honeytoggleouyfyt == false then
-                honeytoggleouyfyt = true
-                maskequip('Honey Mask')
+        if kometa.toggles.honeymaskconv then
+            if temptable.converting then
+                if not honeytoggleouyfyt then
+                    honeytoggleouyfyt = true
+                    maskequip("Honey Mask")
+                end
+            else
+                if honeytoggleouyfyt then
+                    honeytoggleouyfyt = false
+                    maskequip(kometa.vars.defmask)
+                end
             end
-        else
-            if honeytoggleouyfyt == true then
-                honeytoggleouyfyt = false
-                maskequip(kometa.vars.defmask)
-            end
-        end
         end
     end
 end)
