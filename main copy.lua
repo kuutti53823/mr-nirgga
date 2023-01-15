@@ -25,7 +25,7 @@ local hi = false
 -- Script tables
 
 local temptable = {
-    version = "v1.0.0",
+    version = "v1.1.2",
     MondoCollectTokens = false,
     blackfield = "Ant Field",
     LastFieldColor = 'White',
