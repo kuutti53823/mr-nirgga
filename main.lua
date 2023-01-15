@@ -2104,20 +2104,16 @@ for _,v in next, game.Workspace.Collectibles:GetChildren() do
     end
 end 
 
-task.spawn(function()
-    while task.wait() do
-        if player.Character:FindFirstChild("HumanoidRootPart") then
-            local pos = api.humanoidrootpart().Position
-            task.wait(0.00001)
-            local currentSpeed = (pos - api.humanoidrootpart().Position).magnitude
-            if currentSpeed > 0 then
-                temptable.running = true
-            else
-                temptable.running = false
-            end
-        end
+task.spawn(function() while task.wait() do
+    pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    task.wait(0.00001)
+    currentSpeed = (pos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
+    if currentSpeed > 0 then
+        temptable.running = true
+    else
+        temptable.running = false
     end
-end)
+end end)
 
 task.spawn(function() while task.wait(15*60+10) do 
     if kometa.AutoUseSettings['Glitter'] and findFieldWithRay(api.humanoidrootpart().Position, Vector3.new(0, -90, 0)) then
