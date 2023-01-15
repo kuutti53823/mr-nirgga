@@ -1024,7 +1024,6 @@ function getcloud()
 end
 
     function getcoco(v)
-    if temptable.converting or temptable.started.monsters then return end
     if temptable.coconut then repeat task.wait() until not temptable.coconut end
     temptable.coconut = true
     repeat
@@ -1038,7 +1037,6 @@ end
 end
 
 function getfuzzy(v)
-    if temptable.converting or temptable.started.monsters then return end
     if temptable.fuzzy then repeat task.wait() until not temptable.fuzzy end
     if not v:FindFirstChild("Plane") then return end
     local FuzzyPlane = v:FindFirstChild("Plane")
@@ -1052,7 +1050,6 @@ function getfuzzy(v)
 end
 
 function getflame()
-    if temptable.converting or temptable.started.monsters then return end
     for i,v in next, game:GetService("Workspace").PlayerFlames:GetChildren() do
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 and not rtsg().Modifiers.FlameHeat then
             if kometa.toggles.faceballoons and findballoon() then api.humanoidrootpart().CFrame = CFrame.lookAt(api.humanoidrootpart().Position, Vector3.new(findballoon().BalloonRoot.Position.X, api.humanoidrootpart().Position.Y, findballoon().BalloonRoot.Position.Z)) end
@@ -1071,7 +1068,6 @@ function getflame()
 end
 
 function getdupe()
-    if temptable.converting or temptable.started.monsters then return end
     for i,v in pairs(game:GetService("Workspace").Camera.DupedTokens:GetChildren()) do
         if tonumber((v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
             if kometa.toggles.faceballoons and findballoon() then api.humanoidrootpart().CFrame = CFrame.lookAt(api.humanoidrootpart().Position, Vector3.new(findballoon().BalloonRoot.Position.X, api.humanoidrootpart().Position.Y, findballoon().BalloonRoot.Position.Z)) end
@@ -1122,7 +1118,6 @@ function avoidmob()
 end
 
 function getcrosshairs(v)
-    if temptable.converting or temptable.started.monsters then return end
     if v.BrickColor ~= BrickColor.new("Lime green") and v.BrickColor ~= BrickColor.new("Flint") then
     if temptable.crosshair then repeat task.wait() until not temptable.crosshair end
     temptable.crosshair = true
