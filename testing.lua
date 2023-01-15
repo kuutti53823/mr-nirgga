@@ -1645,17 +1645,6 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
             end
         end
     end
-        elseif v.Name == "DustBunnyInstance" then
-            task.wait(.1)
-            if v:FindFirstChild("Plane") then
-                if kometa.toggles.farmfuzzy and kometa.toggles.autofarm and tonumber((v.Plane.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude) < temptable.magnitude/1.4 then
-                    -- repeat api.teleport(CFrame.new(v:FindFirstChild("Plane").Position)) task.wait() until v ~= nil or v.Parent ~= nil
-                    table.insert(temptable.FuzzyBombs, v)
-                    getfuzzy(v)
-                end
-            end
-        end
-    end
 end)
 
 game.Workspace.Particles.Snowflakes.ChildAdded:Connect(function(Object)
