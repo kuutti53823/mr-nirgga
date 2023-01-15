@@ -1114,6 +1114,8 @@ function avoidmob()
 end
 
 function docrosshairs()
+    if temptable.started.ant or temptable.started.vicious or temptable.converting then return end
+
     local savespeed = kometa.vars.walkspeed
 
     for _,v in pairs(game.Workspace.Particles:GetChildren()) do
@@ -1621,15 +1623,20 @@ Local_Configs:Cheat("Button", "Load Config", function() kometa = game:service'Ht
 Local_Configs:Cheat("Button", "Save Config", function() writefile("kometa/BSS_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometa)) writefile("kometa/BSS_webhook_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometawebhook)) end, {text = ' '})
 Local_Configs:Cheat("Button", "Reset Config", function() kometa = defaultkometa kometawebhook = defaultkometawebhook end, {text = ' '})
 
-task.spawn(function() while task.wait() do
-    if kometa.toggles.autofarm then
-        --if kometa.toggles.farmcoco then getcoco() end
-        if kometa.toggles.collectcrosshairs then docrosshairs() end
-        if kometa.toggles.farmflame then getflame() end
-        if kometa.toggles.farmduped then getdupe() end
-        -- if kometa.toggles.farmfuzzy then getfuzzy() end
+task.spawn(function()
+    while task.wait() do
+        if kometa.toggles.autofarm then
+            if kometa.toggles.collectcrosshairs then 
+                docrosshairs()
+            end
+            if kometa.toggles.farmduped then
+                getdupe()
+            end
+            if kometa.toggles.farmflame then
+                getflame()
+        end
     end
-end end)
+end)
 
 game.Workspace.Particles.ChildAdded:Connect(function(v)
     if not temptable.started.vicious and not temptable.started.ant then
