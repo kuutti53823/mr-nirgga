@@ -60,7 +60,6 @@ local temptable = {
     honeycurrent = statstable.Totals.Honey,
     dead = false,
     float = false,
-    pepsigodmode = false,
     pepsiautodig = false,
     alpha = false,
     beta = false,
@@ -280,7 +279,6 @@ local kometa = {
         enabletokenblacklisting = false,
         farmballoons = false,
         farmsnowflakes = false,
-        collectgingerbreads = false,
         collectcrosshairs = false,
         farmpuffshrooms = false,
         tptonpc = false,
@@ -297,7 +295,6 @@ local kometa = {
         autokillmobs = false,
         autoant = false,
         killwindy = false,
-        godmode = false,
         disablerender = false,
         bloatfarm = false,
         autodonate = false,
@@ -1598,13 +1595,13 @@ Local_Configs:Cheat("Button", "Load Config", function() kometa = game:service'Ht
 Local_Configs:Cheat("Button", "Save Config", function() writefile("kometa/BSS_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometa)) writefile("kometa/BSS_webhook_"..temptable.configname..".json",game:service'HttpService':JSONEncode(kometawebhook)) end, {text = ' '})
 Local_Configs:Cheat("Button", "Reset Config", function() kometa = defaultkometa kometawebhook = defaultkometawebhook end, {text = ' '})
 
-task.spawn(function() while task.wait(0.05) do
+task.spawn(function() while task.wait() do
     if kometa.toggles.autofarm then
         --if kometa.toggles.farmcoco then getcoco() end
         --if kometa.toggles.collectcrosshairs then getcrosshairs() end
-        -- if kometa.toggles.farmfuzzy then getfuzzy() end
         if kometa.toggles.farmflame then getflame() end
         if kometa.toggles.farmduped then getdupe() end
+        -- if kometa.toggles.farmfuzzy then getfuzzy() end
     end
 end end)
 
@@ -2021,9 +2018,10 @@ task.spawn(function() while task.wait(1) do
 end end)
 
 game:GetService('RunService').Heartbeat:connect(function() 
+    humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
     if kometa.toggles.autoquest then firesignal(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.NPC.ButtonOverlay.MouseButton1Click) end
-    if kometa.toggles.loopspeed then game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = kometa.vars.walkspeed end
-    if kometa.toggles.loopjump then game.Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = kometa.vars.jumppower end
+    if kometa.toggles.loopspeed then humanoid.WalkSpeed = kometa.vars.walkspeed end
+    if kometa.toggles.loopjump then humanoid.JumpPower = kometa.vars.jumppower end
 end)
 
 game:GetService('RunService').Heartbeat:connect(function()
@@ -2103,7 +2101,7 @@ end
 task.spawn(function() while task.wait() do
     pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
     task.wait(0.00001)
-    currentSpeed = (pos-pos).magnitude
+    currentSpeed = (pos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
     if currentSpeed > 0 then
         temptable.running = true
     else
