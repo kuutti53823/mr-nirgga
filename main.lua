@@ -1122,6 +1122,7 @@ function avoidmob()
 end
 
 function getcrosshairs(v)
+    if temptable.converting or temptable.started.monsters then return end
     if v.BrickColor ~= BrickColor.new("Lime green") and v.BrickColor ~= BrickColor.new("Flint") then
     if temptable.crosshair then repeat task.wait() until not temptable.crosshair end
     temptable.crosshair = true
@@ -2107,7 +2108,7 @@ end
 task.spawn(function() while task.wait() do
     pos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
     task.wait(0.00001)
-    currentSpeed = (pos-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
+    currentSpeed = (pos-pos).magnitude
     if currentSpeed > 0 then
         temptable.running = true
     else
